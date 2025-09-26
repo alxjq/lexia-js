@@ -1,13 +1,10 @@
-#!/usr/bin/env bun
-
-
 const readline = require('readline');
 const https = require('https');
 
-const API_KEY = process.env.api;
-const MODEL = process.env.model;
+const API_KEY = 'Api_Key';
+const MODEL = 'Model_Name';
 const PROMPT = 'you>';
-const DOGRU_SIFRE = process.env.passw;
+const passw = 'your_password';
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -15,14 +12,14 @@ const rl = readline.createInterface({
 });
 
 
-function sifreKontrol() {
-  rl.question('Şifreyi girin: ', (sifre) => {
-    if (sifre === DOGRU_SIFRE) {
-      console.log('Giriş başarılı. Lexia başlatılıyor...');
+function passwordcontrol() {
+	  rl.question('Insert password: ', (sifre) => {
+    if (sifre === passw) {
+      console.log('Login is successful. Lexia is launching...');
       baslatBot();
     } else {
-      console.log('Erişim reddedildi.');
-      sifreKontrol(); 
+      console.log('Access denied.');
+      passwordcontrol(); 
     }
   });
 }
@@ -30,7 +27,7 @@ function sifreKontrol() {
 
 function baslatBot() {
   rl.setPrompt(PROMPT);
-  console.log('Lexia başlatıldı. Çıkmak için "exit" yaz.');
+  console.log('Lexia was launched. Type "exit" to exit.');
   rl.prompt();
 
   rl.on('line', async (line) => {
@@ -83,10 +80,10 @@ async function sendToGroq(promptText) {
       res.on('end', () => {
         try {
           const parsed = JSON.parse(body);
-          const reply = parsed.choices?.[0]?.message?.content || 'yanıt alınamadı';
+          const reply = parsed.choices?.[0]?.message?.content || 'No response received';
           resolve(reply);
         } catch (e) {
-          reject(new Error('Yanıt çözümleme hatası'));
+          reject(new Error('Response resolution error'));
         }
       });
     });
@@ -98,4 +95,4 @@ async function sendToGroq(promptText) {
 }
 
 
-sifreKontrol();
+passwordcontrol();
