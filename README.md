@@ -1,5 +1,1 @@
-what you need
-
-1-create .env file and put code in folder.
-2-edit .env file
-3-open folder and work. welldone.
+take api key,model from (https://console.groq.com/login). And set your password. 
