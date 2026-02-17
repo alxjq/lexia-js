@@ -29,5 +29,5 @@ It connects to the Groq API using an OpenAI-compatible endpoint and allows inter
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/lexia-cli.git
+git clone https://github.com/alxjq/lexia-cli.git
 cd lexia-cli
